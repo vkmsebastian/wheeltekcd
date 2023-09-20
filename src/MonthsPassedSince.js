@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from 'react';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker.css';
 import './styles.css'; // Import your CSS file
 
 function formatWithCommas(number) {
@@ -6,8 +8,11 @@ function formatWithCommas(number) {
   }
 
 function DateTimeDifference() {
-  const targetDate = new Date('2023-03-17T12:00:00');
+  // const targetDate = new Date('2023-03-17T12:00:00');
+  const [targetDate, setTargetDate] = useState(new Date('2023-03-17T12:00:00'));
   const currentDate = new Date();
+  const options = { day: 'numeric', month: 'long', year: 'numeric' };
+
 
   const [timeDifference, setTimeDifference] = useState({
     months: 0,
@@ -41,8 +46,21 @@ function DateTimeDifference() {
   }, [currentDate]);
 
   return (
+    <div className="div-container">
+      <h1 className="glitch" data-text="VKS">How long ago was {targetDate ? targetDate.toLocaleDateString('en-US',options)  : "March 17, 2023"}?</h1>
+      
     <div className="app-container">
-      <h1 className="header">How long ago was March 17, 2023?</h1> {/* Centered Header */}
+      <div className="calendar">
+      <h1>Date:</h1>
+      <DatePicker
+        wrapperClassName="datePicker"
+        selected={targetDate}
+        onChange={(date) => setTargetDate(date)}
+        // showTimeSelect
+        dateFormat="MM/dd/yyyy"
+      />
+    
+      </div>
       <div className="container">
         <div className="result">
           <p className="label">Months</p>
@@ -68,7 +86,11 @@ function DateTimeDifference() {
           <p className="label">Seconds</p>
           <p className="unit-value">{formatWithCommas(timeDifference.seconds)}</p>
         </div>
+        
       </div>
+    </div>
+    <link href='https://fonts.googleapis.com/css?family=Varela' rel='stylesheet' type='text/css'></link>
+        {/* <div class="glitch" data-text="VKaizer">VKaizer</div> */}
     </div>
   );
   
