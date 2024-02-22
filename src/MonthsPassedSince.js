@@ -50,6 +50,7 @@ function DateTimeDifference() {
       <h1 className="glitch" data-text="VKS">How long ago was {targetDate ? targetDate.toLocaleDateString('en-US',options)  : "March 17, 2023"}?</h1>
       
     <div className="app-container">
+      <div className="result">
       <div className="calendar">
       <h1>Date:</h1>
       <DatePicker
@@ -59,6 +60,7 @@ function DateTimeDifference() {
         // showTimeSelect
         dateFormat="MM/dd/yyyy"
       />
+      </div>
     
       </div>
       <div className="container">
